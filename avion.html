@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avión en Diferentes Idiomas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+        .icon {
+            display: none;
+            position: absolute;
+            font-size: 50px;
+            color: #0056b3;
+            z-index: 10;
+        }
+        .animate-plane {
+            animation: fly 1s ease-in-out;
+        }
+        @keyframes fly {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        li {
+            background: #fff;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 200px;
+        }
+        .language {
+            font-weight: bold;
+            color: #0056b3;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .language img {
+            width: 30px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .icon-button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 2px;
+        }
+        .icon-button i {
+            margin-right: 8px;
+        }
+        .icon-button:hover {
+            background-color: #004494;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            color: green;
+        }
+        .media-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .media-container img,
+        .media-container iframe {
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon" id="planeIcon">
+        <i class="fas fa-plane"></i>
+    </div>
+
+    <h1>Avión en Diferentes Idiomas</h1>
+
+    <div class="media-container">
+        <img src="https://th.bing.com/th/id/OIG3.8ed.k3bNXUIo9R6_vTmR?pid=ImgGn" alt="Avión para colorear">
+        <img src="https://cdn.dribbble.com/users/846207/screenshots/7617197/airplane-animation-for-dribbble.gif" alt="Animación de avión">
+        <iframe src="https://www.youtube.com/embed/2XXsRYB3g-o?si=kZPrWHvBXSAcPNOn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="result" id="result"></div>
+    <ul>
+        <li id="spanish">
+            <span class="language"><img src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" alt="Español">Español:</span> <h2>Avión</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('Avión', 'es-ES', 'spanish')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('Avión', 'es-ES', 'spanish')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="english">
+            <span class="language"><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" alt="Inglés">Inglés:</span><h2> Airplane</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('Airplane', 'en-US', 'english')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('Airplane', 'en-US', 'english')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="french">
+            <span class="language"><img src="https://flagcdn.com/w20/fr.png" srcset="https://flagcdn.com/w40/fr.png 2x" alt="Francés">Francés:</span> <h2>Avion</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('Avion', 'fr-FR', 'french')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('Avion', 'fr-FR', 'french')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="german">
+            <span class="language"><img src="https://flagcdn.com/w20/de.png" srcset="https://flagcdn.com/w40/de.png 2x" alt="Alemán">Alemán:</span> <h2>Flugzeug</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('Flugzeug', 'de-DE', 'german')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('Flugzeug', 'de-DE', 'german')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="italian">
+            <span class="language"><img src="https://flagcdn.com/w20/it.png" srcset="https://flagcdn.com/w40/it.png 2x" alt="Italiano">Italiano:</span> <h2>Aereo</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('Aereo', 'it-IT', 'italian')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('Aereo', 'it-IT', 'italian')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="portuguese">
+            <span class="language"><img src="https://flagcdn.com/w20/pt.png" srcset="https://flagcdn.com/w40/pt.png 2x" alt="Portugués">Portugués:</span><h2> Avião</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('Avião', 'pt-PT', 'portuguese')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('Avião', 'pt-PT', 'portuguese')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="russian">
+            <span class="language"><img src="https://flagcdn.com/w20/ru.png" srcset="https://flagcdn.com/w40/ru.png 2x" alt="Ruso">Ruso:</span><h2> Самолёт (Samolyot)</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('Самолёт', 'ru-RU', 'russian')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('Самолёт', 'ru-RU', 'russian')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="chinese">
+            <span class="language"><img src="https://flagcdn.com/w20/cn.png" srcset="https://flagcdn.com/w40/cn.png 2x" alt="Chino">Chino (Simplificado):</span> <h2>飞机 (Fēijī)</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('飞机', 'zh-CN', 'chinese')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('飞机', 'zh-CN', 'chinese')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="japanese">
+            <span class="language"><img src="https://flagcdn.com/w20/jp.png" srcset="https://flagcdn.com/w40/jp.png 2x" alt="Japonés">Japonés:</span> <h2>飛行機 (Hikōki)</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('飛行機', 'ja-JP', 'japanese')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('飛行機', 'ja-JP', 'japanese')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+        <li id="arabic">
+            <span class="language"><img src="https://flagcdn.com/w20/sa.png" srcset="https://flagcdn.com/w40/sa.png 2x" alt="Árabe">Árabe:</span><h2> طائرة (Tā'ira)</h2>
+            <div>
+                <button class="icon-button" onclick="animateAndSpeak('طائرة', 'ar-SA', 'arabic')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-button" onclick="animateAndRecognize('طائرة', 'ar-SA', 'arabic')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </li>
+    </ul>
+
+    <script>
+        function movePlaneToElement(elementId) {
+            var element = document.getElementById(elementId);
+            var planeIcon = document.getElementById('planeIcon');
+            var rect = element.querySelector('.language').getBoundingClientRect();
+            var offsetX = window.scrollX;
+            var offsetY = window.scrollY;
+            var elementWidth = element.offsetWidth;
+            var iconWidth = planeIcon.offsetWidth;
+            planeIcon.style.top = rect.top + offsetY - planeIcon.offsetHeight + 'px';
+            planeIcon.style.left = rect.left + offsetX + (elementWidth - iconWidth) / 2 + 'px';
+            planeIcon.style.display = 'block';
+        }
+
+        function animatePlane() {
+            var planeIcon = document.getElementById('planeIcon');
+            planeIcon.classList.add('animate-plane');
+            setTimeout(function() {
+                planeIcon.classList.remove('animate-plane');
+            }, 1000);
+        }
+
+        function speak(text, lang) {
+            var utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            speechSynthesis.speak(utterance);
+        }
+
+        function recognize(expectedText, lang) {
+            var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = lang;
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                var spokenText = event.results[0][0].transcript;
+                var resultDiv = document.getElementById('result');
+                if (spokenText.toLowerCase() === expectedText.toLowerCase()) {
+                    resultDiv.textContent = "¡Bien hecho!";
+                    resultDiv.style.color = "green";
+                } else {
+                    resultDiv.textContent = `Inténtalo de nuevo. Dijiste: "${spokenText}"`;
+                    resultDiv.style.color = "red";
+                }
+            }
+
+            recognition.onerror = function(event) {
+                var resultDiv = document.getElementById('result');
+                resultDiv.textContent = "Error en el reconocimiento de voz: " + event.error;
+                resultDiv.style.color = "red";
+            }
+        }
+
+        function animateAndSpeak(text, lang, elementId) {
+            movePlaneToElement(elementId);
+            animatePlane();
+            speak(text, lang);
+        }
+
+        function animateAndRecognize(text, lang, elementId) {
+            movePlaneToElement(elementId);
+            animatePlane();
+            recognize(text, lang);
+        }
+    </script>
+</body>
+</html>
