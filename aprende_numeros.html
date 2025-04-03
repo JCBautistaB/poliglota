@@ -58,7 +58,7 @@
                 isRunning = true;
                 
                 interval = setInterval(() => {
-                    if (count < 100) {
+                    if (count < 31) {
                         document.getElementById('number').textContent = count;
                         document.getElementById('text').textContent = numbers['es'][count];
                         const speech = new SpeechSynthesisUtterance(numbers['es'][count]);
