@@ -45,7 +45,7 @@
         <button id="start">Iniciar</button>
         <button id="reset">Reiniciar</button>
         <div id="video">
-            <iframe src="https://www.youtube.com/embed/1yZg9Atq4CM?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe id="videoPlayer" src="https://www.youtube.com/embed/1yZg9Atq4CM?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -56,6 +56,11 @@
         ];
 
         let count = 0, interval, isRunning = false;
+
+        // Función que oculta el video después de que termine
+        function onVideoEnd() {
+            document.getElementById('video').style.display = 'none';
+        }
 
         document.getElementById('start').addEventListener('click', () => {
             if (!isRunning) {
@@ -96,6 +101,17 @@
             document.getElementById('start').style.backgroundColor = '#32cd32'; // verde original
             document.getElementById('video').style.display = 'none'; // Ocultar video al reiniciar
             isRunning = false;
+        });
+
+        // Detectar el fin del video
+        document.getElementById('videoPlayer').addEventListener('load', () => {
+            const player = document.getElementById('videoPlayer');
+            player.contentWindow.addEventListener('message', (event) => {
+                const data = JSON.parse(event.data);
+                if (data.event === 'onStateChange' && data.info === 0) { // Fin del video
+                    onVideoEnd();
+                }
+            });
         });
     </script>
 </body>
