@@ -28,6 +28,10 @@
         }
         #start { background-color: #32cd32; color: white; }
         #reset { background-color: #ff4500; color: white; }
+        #video {
+            display: none;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -35,6 +39,9 @@
         <div class="letter" id="letter">A</div>
         <button id="start">Iniciar</button>
         <button id="reset">Reiniciar</button>
+        <div id="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/1yZg9Atq4CM?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
     </div>
 
     <script>
@@ -63,6 +70,7 @@
                         clearInterval(interval);
                         document.getElementById('start').textContent = 'Iniciar';
                         document.getElementById('start').style.backgroundColor = '#32cd32'; // verde original
+                        document.getElementById('video').style.display = 'block'; // Mostrar video
                     }
                 }, 1000);
             } else {
@@ -79,6 +87,7 @@
             document.getElementById('letter').textContent = "A"; 
             document.getElementById('start').textContent = 'Iniciar';
             document.getElementById('start').style.backgroundColor = '#32cd32'; // verde original
+            document.getElementById('video').style.display = 'none'; // Ocultar video
             isRunning = false;
         });
     </script>
