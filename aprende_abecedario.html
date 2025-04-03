@@ -45,7 +45,7 @@
         <button id="start">Iniciar</button>
         <button id="reset">Reiniciar</button>
         <div id="video">
-            <iframe id="videoPlayer" src="https://www.youtube.com/embed/1yZg9Atq4CM?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe id="videoPlayer" src="https://www.youtube.com/embed/3i7jpN7WwDQ?autoplay=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -103,16 +103,26 @@
             isRunning = false;
         });
 
-        // Detectar el fin del video
-        document.getElementById('videoPlayer').addEventListener('load', () => {
-            const player = document.getElementById('videoPlayer');
-            player.contentWindow.addEventListener('message', (event) => {
-                const data = JSON.parse(event.data);
-                if (data.event === 'onStateChange' && data.info === 0) { // Fin del video
-                    onVideoEnd();
+        // API de YouTube: detectamos el evento 'onStateChange' cuando el video termina
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('videoPlayer', {
+                events: {
+                    'onStateChange': onPlayerStateChange
                 }
             });
-        });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                onVideoEnd(); // Ocultar video cuando termine
+            }
+        }
     </script>
 </body>
 </html>
