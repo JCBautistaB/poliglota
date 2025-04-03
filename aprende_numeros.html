@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador para Niños</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+        }
+        h1 {
+            font-size: 4rem;
+            color: #ff4081;
+            text-shadow: 2px 2px #ff80ab;
+            margin-top: 50px;
+        }
+        #counter {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #6200ea;
+            margin: 20px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #start { background-color: #4caf50; color: white; }
+        #pause { background-color: #ff9800; color: white; }
+        #reset { background-color: #f44336; color: white; }
+        #language {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contemos Juntos</h1>
+    <div id="counter">0</div>
+    <button id="start">Iniciar</button>
+    <button id="pause">Pausar</button>
+    <button id="reset">Reiniciar</button>
+    <br>
+    <label for="language">Idioma:</label>
+    <select id="language">
+        <option value="es">Español</option>
+        <option value="en">Inglés</option>
+    </select>
+
+    <script>
+        let counter = 0;
+        let interval;
+        let isPaused = false;
+
+        function speakNumber(num) {
+            let msg = new SpeechSynthesisUtterance(num);
+            let lang = document.getElementById("language").value;
+            msg.lang = lang === "es" ? "es-ES" : "en-US";
+            speechSynthesis.speak(msg);
+        }
+
+        document.getElementById("start").addEventListener("click", function() {
+            if (!interval || isPaused) {
+                isPaused = false;
+                interval = setInterval(() => {
+                    if (counter < 100) {
+                        counter++;
+                        document.getElementById("counter").innerText = counter;
+                        speakNumber(counter);
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 1000);
+            }
+        });
+
+        document.getElementById("pause").addEventListener("click", function() {
+            clearInterval(interval);
+            isPaused = true;
+        });
+
+        document.getElementById("reset").addEventListener("click", function() {
+            clearInterval(interval);
+            counter = 0;
+            document.getElementById("counter").innerText = counter;
+            isPaused = false;
+        });
+    </script>
+</body>
+</html>
